@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from "react";
+import { StatusBar } from "expo-status-bar";
+import { View } from "react-native";
+import { GameScreen } from "./src/pages/GameScreen";
+import { globalStyles } from "../Truco-Contador/src/global/style";
+import { requestTrackingPermissionsAsync } from "expo-tracking-transparency";
 
 export default function App() {
+  useEffect(() => {
+    (async () => {
+      await requestTrackingPermissionsAsync();
+    })();
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+    <View style={globalStyles.container}>
+      <GameScreen />
       <StatusBar style="auto" />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
